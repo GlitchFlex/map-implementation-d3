@@ -18,7 +18,8 @@ const Mapvisualizer = () => {
         
         var states = feature(data, data.objects.districts).features;
         console.log(states);
-        const projection = geoIdentity().translate([width/2,height/2]).scale(100);
+        // const projection = geoIdentity().translate([width/2,height/2]).scale(20);
+        const projection = geoIdentity()
     
 
         const pathGenerator = geoPath().projection(projection);
@@ -26,12 +27,16 @@ const Mapvisualizer = () => {
         svg.selectAll('.state').data(states).enter().append("path").attr("class","state").attr("d", state => pathGenerator(state)).attr('stroke-width', 5)
         .attr('stroke-opacity', 1).attr('fill', '#000')
         .attr('stroke', '#000');
+// console.log(svg.selectAll(".state"));
         
     });
 
     return (
         <div ref={wrapperRef} style={{ marginBottom: '2rem' }}>
-            <svg ref={svgRef}>
+            <svg  ref={svgRef}>
+                <g className='state'></g>
+                <g className='state'></g>
+                <g className='state'></g>
             </svg>
             
         </div>
