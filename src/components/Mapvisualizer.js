@@ -53,34 +53,32 @@ const Mapvisualizer = () => {
             .append('path')
             .attr('class', 'district')
             .attr('d', (district) => pathGenerator(district))
-            .attr('stroke-width', 0.5)
+            .attr('stroke-width', 0.3)
             .attr('stroke-opacity', 1)
             .attr('fill', 'rgb(246,251,255)')
             .attr('stroke', 'rgb(0,123,255)')
             .style('cursor', 'ponter')
             .attr('pointer-events', 'all')
-            .on('click', (e, d) => {
-                console.log(`State name : ${d.properties.st_nm}`);
-                console.log(`District name : ${d.properties.district}`);
-            });
-
+            
+            
             //creating the .state elements in the svg
             svg.selectAll('.state')
-            .data(states)
-            .enter()
-            .append('path')
-            .attr('id',`${states.id}`)
-            .attr('class', 'state')
-            .attr('stroke-width', 0.8)
-            .attr('stroke-opacity', 1)
-            .attr('fill', 'rgb(246,251,255,0.1)')
-            .attr('stroke', 'rgb(0,123,255)')
-            .style('cursor', 'ponter')
-            .attr('pointer-events', 'all')
-            .on('click', (e, d) => {
-                setState(d);
-                console.log(d);
-            });
+                .data(states)
+                .enter()
+                .append('path')
+                .attr('class', 'state')
+                .attr('d', (state) => pathGenerator(state))
+                .attr('stroke-width', 1)
+                .attr('stroke-opacity', 1)
+                .attr('fill', 'rgba(246,251,255,0.1)')
+                .attr('stroke', 'rgba(21, 7, 134,0.5)')
+                .style('cursor', 'ponter')
+                .attr('pointer-events', 'all')
+                .on('click', (e, d) => {
+                    console.log(`State name : ${d.properties.st_nm}`);
+                    
+                });
+            
         // console.log(svg.selectAll(".state"));
     });
 
