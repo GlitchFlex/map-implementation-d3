@@ -16,7 +16,7 @@ import { feature } from 'topojson-client';
 
 
 //the functional component
-const Mapvisualizer = () => {
+const Statevisualizer = () => {
     //refference to the svg item
     const navigate = useNavigate();
 
@@ -38,17 +38,11 @@ const Mapvisualizer = () => {
         // getting the responsive height and width from useResizeObserver
         const { width, height } = dimensions || wrapperRef.current.getBoundingClientRect();
 
-
-        // const height = 0;
-        // const width = 0;
-
-
-        
         //configuring the districts data from data.json
-        // var districts = feature(data, data.objects.districts).features;
+        var districts = feature(data, data.objects.districts).features;
         //configuring the states data from data.json
         var states = feature(data, data.objects.states).features;
-        console.log(states);
+        // console.log(states);
 
         //creating the projection instance
         const projection = geoIdentity()
@@ -59,19 +53,19 @@ const Mapvisualizer = () => {
         const pathGenerator = geoPath().projection(projection);
         
 
-        //creating the .district elements in svg
-        // svg.selectAll('.district')
-        //     .data(districts)
-        //     .enter()
-        //     .append('path')
-        //     .attr('class', 'district')
-        //     .attr('d', (district) => pathGenerator(district))
-        //     .attr('stroke-width', 0.3)
-        //     .attr('stroke-opacity', 1)
-        //     .attr('fill', 'rgb(246,251,255)')
-        //     .attr('stroke', 'rgb(0,123,255)')
-        //     .style('cursor', 'ponter')
-        //     .attr('pointer-events', 'all')
+        // creating the .district elements in svg
+        svg.selectAll('.district')
+            .data(districts)
+            .enter()
+            .append('path')
+            .attr('class', 'district')
+            .attr('d', (district) => pathGenerator(district))
+            .attr('stroke-width', 0.3)
+            .attr('stroke-opacity', 1)
+            .attr('fill', 'rgb(246,251,255)')
+            .attr('stroke', 'rgb(0,123,255)')
+            .style('cursor', 'ponter')
+            .attr('pointer-events', 'all')
             
             
             //creating the .state elements in the svg
@@ -109,4 +103,4 @@ const Mapvisualizer = () => {
     );
 };
 
-export default Mapvisualizer;
+export default Statevisualizer;

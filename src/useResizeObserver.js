@@ -20,6 +20,7 @@ const useResizeObserver = ref => {
       resizeObserver.unobserve(observeTarget);
     };
   }, [ref]);
+  console.log(dimensions);
   return dimensions;
 };
 

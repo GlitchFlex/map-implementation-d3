@@ -10,7 +10,7 @@ svg{
 
 
 body{
-    background-color: rgba(0, 8, 14, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .district{
@@ -21,3 +21,42 @@ body{
     cursor: pointer;
 }
 
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* margin: 0 auto; */
+}
+
+.container{
+    max-width:1000px;
+    margin:5px auto;
+}
+
+.homeLink{
+    color: black;
+    text-decoration: none;
+    background-color: aqua;
+    padding:5px 20px;
+}
+
+
+.containerBox{
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.border{
+    position: absolute !important;
+    top:200px !important;
+    left:50px !important;
+}
+
+/* /* path{
+    position: relative; */
+    /* top: 200px; */
+/* } */ 
