@@ -11,7 +11,7 @@ import useResizeObserver from '../useResizeObserver';
 //importing the topoJSON data
 import data from '../india.json';
 //importing feature from topojson client to convert topoJSON to geoJSON
-import { feature, transform } from 'topojson-client';
+import { feature } from 'topojson-client';
 
 
 
@@ -38,7 +38,6 @@ const Mapvisualizer = () => {
         // getting the responsive height and width from useResizeObserver
         const { width, height } = dimensions || wrapperRef.current.getBoundingClientRect();
 
-        // console.log(width + " width");
 
         // const height = 0;
         // const width = 0;
@@ -49,21 +48,15 @@ const Mapvisualizer = () => {
         // var districts = feature(data, data.objects.districts).features;
         //configuring the states data from data.json
         var states = feature(data, data.objects.states).features;
-        // console.log(states);
+        console.log(states);
 
         //creating the projection instance
         const projection = geoIdentity()
-            .scale(10)
-            .translate([-600, 0]);
-
-            // console.log(projection);
-
-            
+            .scale(20)
+            .translate([-width/1.8, -height / 6]);
             
         // creating the pathGenerator and passing the projection instance
-        const pathGenerator = geoPath().projection(projection);
-        const bound  = pathGenerator.bounds(states[0])
-        console.log(bound);
+        const pathGenerator = geoPath(geoIdentity());
         
 
         //creating the .district elements in svg
@@ -82,19 +75,17 @@ const Mapvisualizer = () => {
             
             
             //creating the .state elements in the svg
-            svg.select('.state')
-                .selectAll(".paths")
+            svg.selectAll('.state')
                 .data(states)
                 .enter()
                 .append('path')
-                .attr('class', 'paths')
+                .attr('class', 'state')
                 .attr('d', (state) => pathGenerator(state))
                 .attr('stroke-width', 1)
-                // .attr('transform' , (feature) =>  `translate(${pathGenerator.centroid(feature)})`)             
                 .attr('stroke-opacity', 1)
                 .attr('fill', 'rgba(246,251,255,0.1)')
                 .attr('stroke', 'rgba(21, 7, 134,0.5)')
-                .style('cursor', 'pointer')
+                .style('cursor', 'ponter')
                 .attr('pointer-events', 'all')
                 .on('click', (e, d) => {
                     console.log(`State name : ${d.properties.st_nm}`);
@@ -103,17 +94,15 @@ const Mapvisualizer = () => {
                     // window.location.href = 'http://localhost:3000/state'
                     navigate(`/state/${d.properties.st_nm}`)
                 });
-
-                svg.attr("viewBox" , "0 0 532 588" ).attr("preserveAspectRatio" , "xMidYMid meet").attr("pointer-events"  , 'auto')
             
         // console.log(svg.selectAll(".state"));
     });
 
     return (
-        <div ref={wrapperRef} style={{ marginBottom: '2rem' , width : "100%" }} className="zoom">
+        <div ref={wrapperRef} style={{ marginBottom: '2rem' }}>
             <svg ref={svgRef} >
                 
-                <g className="state" fill='red'></g>
+                <g className="state"></g>
                 
             </svg>
         </div>
