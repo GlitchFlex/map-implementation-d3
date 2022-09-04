@@ -12,8 +12,8 @@ svg{
     /* width: 500px;
     height: 500px; */
     width: 100%;
-height: auto;
-    transform:rotateZ(180deg) rotateY(180deg); 
+height:500px;
+    /* transform:rotateZ(180deg) rotateY(180deg);  */
     /* transform:rotateY(180deg);  */
     
 }

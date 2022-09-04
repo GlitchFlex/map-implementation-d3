@@ -52,8 +52,8 @@ const Mapvisualizer = () => {
 
         //creating the projection instance
         const projection = geoIdentity()
-            .scale(20)
-            .translate([-width/1.8, -height / 6]);
+        .scale(10)
+        .translate([-600, 0]);
             
         // creating the pathGenerator and passing the projection instance
         const pathGenerator = geoPath(geoIdentity());
