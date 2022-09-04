@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 //importing the fucntionality which returns the responsive height and width of the wrapper
 import useResizeObserver from '../useResizeObserver';
 //importing the topoJSON data
-import data from '../india.json';
+import data from '../india-copy.json';
 //importing feature from topojson client to convert topoJSON to geoJSON
 import { feature, transform } from 'topojson-client';
 
